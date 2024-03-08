@@ -4,3 +4,4 @@ DEV_WORKSPACES
 .DS_Store
 
 tmp
+dist/
