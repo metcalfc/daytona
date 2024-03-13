@@ -12,7 +12,4 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
 
 go mod tidy
 
-# Install Oh My Zsh and lets get a nice prompt
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
 echo 'alias daytona="go run cmd/daytona/main.go"' >> "$HOME/.zshrc"

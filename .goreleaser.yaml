@@ -16,7 +16,8 @@ before:
     - go generate ./...
 
 builds:
-  - env:
+  - 
+    env:
       - CGO_ENABLED=0
     goos:
       - linux
@@ -28,17 +29,24 @@ builds:
     main: ./cmd/daytona/main.go
 
 dockers:
-  - goos: linux
-    goarch:
-      - amd64
-      - arm64
-    image_templates:
-      - "docker.io/metcalfc/daytona:latest"
-      - "docker.io/metcalfc/daytona:{{.Version}}"
-    dockerfile: Dockerfile
+  - image_templates:
+    - "docker.io/metcalfc/daytona:latest"
+    - "docker.io/metcalfc/daytona:{{.Version}}"
+    use: buildx
+    build_flag_templates:
+    - "--pull"
+    - "--platform=linux/amd64"
+  - image_templates:
+    - "docker.io/metcalfc/daytona:latest"
+    - "docker.io/metcalfc/daytona:{{.Version}}"
+    use: buildx
+    build_flag_templates:
+    - "--pull"
+    - "--platform=linux/arm64"
 
 archives:
-  - format: tar.gz
+  - 
+    format: tar.gz
     # this name template makes the OS and Arch compatible with the results of `uname`.
     name_template: '{{ .ProjectName }}-{{ .Os }}-{{ .Arch }}'
     # use zip for windows archives

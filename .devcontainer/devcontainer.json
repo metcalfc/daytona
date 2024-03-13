@@ -4,16 +4,23 @@
 		"dockerfile": "Dockerfile",
 		"context": "."
 	},
+
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
 		"ghcr.io/devcontainers/features/go:1": {
 			"version": "1.21.6"
 		},
+		"ghcr.io/marcozac/devcontainer-features/goreleaser:1": {},
+				
 		// the features default node is the lts version
 		"ghcr.io/devcontainers/features/node:1": {},
-		"ghcr.io/guiyomh/features/goreleaser:0.1.1": {
-			"version": "1.24.0"
-		}
+
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"username": "daytona",
+			"userUid": "1000",
+			"userGid": "1000",
+			"configureZshAsDefaultShell": true
+		} 
 	},
 	"containerEnv": {
 		"LOG_LEVEL": "debug",
@@ -22,5 +29,14 @@
 	"postCreateCommand": {
 		"setup": "bash .devcontainer/postcreate.sh"
 	},
-	"remoteUser": "daytona"
+	"remoteUser": "daytona",
+	
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"golang.go"
+			]
+		}
+	}
 }
